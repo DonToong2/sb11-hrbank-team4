@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "backup")
+@Table(name = "backups")
 @Getter @Setter
 public class Backup { // extends BaseEntity {
 
