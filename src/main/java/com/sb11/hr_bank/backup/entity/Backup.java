@@ -30,7 +30,7 @@ public class Backup { // extends BaseEntity {
   @Column(name = "started_at", nullable = false)
   private Instant startedAt;
 
-  @Column(name = "ended_at", nullable = false)
+  @Column(name = "ended_at", nullable = true)
   private Instant endedAt;
 
   @Enumerated(EnumType.STRING)
@@ -40,10 +40,10 @@ public class Backup { // extends BaseEntity {
   // 1개의 백업에는 1개의 파일(1:1)
   // Backup은 fileId를 참조하여 어떤 File인지 알아야함(단방향)
   @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "file_id")
-  private File fileId;
+  @JoinColumn(name = "file_id", nullable = true)
+  private FileEntity fileId;
 
-  private Backup(String worker, Instant startedAt, Instant endedAt, BackupStatus status, File fileId) {
+  private Backup(String worker, Instant startedAt, Instant endedAt, BackupStatus status, FileEntity fileId) {
     this.worker = worker;
     this.startedAt = Instant.now();
     this.endedAt = Instant.now();
